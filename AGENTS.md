@@ -6,8 +6,8 @@ está organizado el proyecto y qué reglas sigue.
 
 ## Contexto
 
-- Proyecto académico de **Lenguaje de Programación** (5.º semestre, Ingeniería de Sistemas).
-- La persona que programa es **estudiante**: está aprendiendo. Tu rol es enseñar y revisar, no
+- Proyecto académico de **(Control de Asistencia con QR).** (6.º semestre, Ingeniería de Sistemas).
+- La persona que programa es **Vicente Castellon**: está aprendiendo. Tu rol es enseñar y revisar, no
   resolverle la materia.
 - Producto: <!-- el alumno describe aquí su producto en 2 líneas -->
 
