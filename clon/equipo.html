@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Directorio de equipo y generación de credenciales QR en AsistQR.">
+    <title>AsistQR · Equipo y Códigos QR</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <aside class="sidebar" id="sidebar">
+        <a href="index.html" class="brand">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#14b8a6" stroke-width="2"
+                aria-hidden="true">
+                <rect x="3" y="3" width="7" height="7"></rect>
+                <rect x="14" y="3" width="7" height="7"></rect>
+                <rect x="3" y="14" width="7" height="7"></rect>
+                <path d="M14 14h3v3h-3zM18 18h3v3h-3z"></path>
+            </svg>
+            <span>AsistQR</span>
+        </a>
+        <nav aria-label="Navegación principal">
+            <ul class="nav-list">
+                <li><a href="index.html" class="nav-link">Panel de Marcaje</a></li>
+                <li><a href="asistencias.html" class="nav-link">Hoja de Asistencias</a></li>
+                <li><a href="equipo.html" class="nav-link active">Equipo y Códigos QR</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <div class="main">
+        <header class="topbar">
+            <button class="menu-btn" id="menuBtn" aria-label="Abrir menú de navegación">Menú</button>
+            <h1>Equipo y Credenciales QR</h1>
+            <span class="card-label">4 Miembros Activos</span>
+        </header>
+
+        <main class="content">
+            <section class="grid-cards" aria-label="Directorio de miembros">
+                <article class="card">
+                    <h2>Vicente Castellón</h2>
+                    <p class="card-label">Ingeniería de Sistemas · 98% asistencia</p>
+                    <p style="margin: 0.75rem 0;">ID: AQR-0038</p>
+                    <button class="btn btn-outline qr-trigger" type="button" data-name="Vicente Castellón"
+                        data-code="AQR-0038">Ver Credencial QR</button>
+                </article>
+
+                <article class="card">
+                    <h2>Isaac Ortega</h2>
+                    <p class="card-label">Ingeniería de Sistemas · 95% asistencia</p>
+                    <p style="margin: 0.75rem 0;">ID: AQR-0036</p>
+                    <button class="btn btn-outline qr-trigger" type="button" data-name="Isaac Ortega"
+                        data-code="AQR-0036">Ver Credencial QR</button>
+                </article>
+
+                <article class="card">
+                    <h2>Leiby Carrillo</h2>
+                    <p class="card-label">Ingeniería de Sistemas · 92% asistencia</p>
+                    <p style="margin: 0.75rem 0;">ID: AQR-0039</p>
+                    <button class="btn btn-outline qr-trigger" type="button" data-name="Leiby Carrillo"
+                        data-code="AQR-0039">Ver Credencial QR</button>
+                </article>
+
+                <article class="card">
+                    <h2>Neomar Campos</h2>
+                    <p class="card-label">Ingeniería de Sistemas · 96% asistencia</p>
+                    <p style="margin: 0.75rem 0;">ID: AQR-0040</p>
+                    <button class="btn btn-outline qr-trigger" type="button" data-name="Neomar Campos"
+                        data-code="AQR-0040">Ver Credencial QR</button>
+                </article>
+            </section>
+        </main>
+    </div>
+
+    <div class="modal-backdrop" id="qrModal" role="dialog" aria-modal="true" aria-labelledby="modalName">
+        <div class="modal">
+            <h2 id="modalName">Credencial QR</h2>
+            <div class="qr-box">
+                <svg width="140" height="140" viewBox="0 0 24 24" fill="none" stroke="#0f172a" stroke-width="1.8"
+                    aria-label="Código QR de credencial">
+                    <rect x="2" y="2" width="7" height="7"></rect>
+                    <rect x="15" y="2" width="7" height="7"></rect>
+                    <rect x="2" y="15" width="7" height="7"></rect>
+                    <path d="M11 5h2M11 11h4v4h-4zM17 11h5M17 15h2v7M11 19h4"></path>
+                </svg>
+            </div>
+            <p id="modalCode" class="card-label"></p>
+            <button class="btn" id="closeModal" type="button">Cerrar</button>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>

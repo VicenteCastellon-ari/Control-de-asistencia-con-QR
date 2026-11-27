@@ -1,19 +1,109 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Recreación · Inicio</title>
-    <link rel="stylesheet" href="./styles.css" />
-  </head>
-  <body>
-    <header>
-      <!-- Tu marca, no la del sitio original -->
-    </header>
-    <main>
-      <!-- Pantalla 1 de 3 -->
-    </main>
-    <footer></footer>
-    <script src="./main.js"></script>
-  </body>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Panel de control y marcaje rápido de asistencias con código QR en AsistQR.">
+    <title>AsistQR · Panel de Marcaje</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <aside class="sidebar" id="sidebar">
+        <a href="index.html" class="brand">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#14b8a6" stroke-width="2"
+                aria-hidden="true">
+                <rect x="3" y="3" width="7" height="7"></rect>
+                <rect x="14" y="3" width="7" height="7"></rect>
+                <rect x="3" y="14" width="7" height="7"></rect>
+                <path d="M14 14h3v3h-3zM18 18h3v3h-3z"></path>
+            </svg>
+            <span>AsistQR</span>
+        </a>
+        <nav aria-label="Navegación principal">
+            <ul class="nav-list">
+                <li><a href="index.html" class="nav-link active">Panel de Marcaje</a></li>
+                <li><a href="asistencias.html" class="nav-link">Hoja de Asistencias</a></li>
+                <li><a href="equipo.html" class="nav-link">Equipo y Códigos QR</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <div class="main">
+        <header class="topbar">
+            <button class="menu-btn" id="menuBtn" aria-label="Abrir menú de navegación">Menú</button>
+            <h1>Panel de Marcaje Rápido</h1>
+            <span class="badge badge-ok">Turno Activo</span>
+        </header>
+
+        <main class="content">
+            <section class="card clock-panel" aria-label="Reloj de marcaje">
+                <div>
+                    <p id="punchStatus">Listo para registrar entrada por QR</p>
+                    <div class="clock-time" id="liveClock">00:00:00</div>
+                </div>
+                <button class="btn" id="punchBtn" type="button">Registrar Entrada QR</button>
+            </section>
+
+            <section class="grid-cards" aria-label="Resumen diario">
+                <article class="card">
+                    <p class="card-label">Presentes Hoy</p>
+                    <p class="card-value">28 / 32</p>
+                </article>
+                <article class="card">
+                    <p class="card-label">Tardanzas</p>
+                    <p class="card-value">3</p>
+                </article>
+                <article class="card">
+                    <p class="card-label">Ausencias</p>
+                    <p class="card-value">1</p>
+                </article>
+                <article class="card">
+                    <p class="card-label">Puntualidad</p>
+                    <p class="card-value">87.5%</p>
+                </article>
+            </section>
+
+            <section class="card" aria-label="Actividad reciente">
+                <h2>Actividad Reciente</h2>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Participante</th>
+                                <th>Hora</th>
+                                <th>Ubicación</th>
+                                <th>Evento</th>
+                            </tr>
+                        </thead>
+                        <tbody id="activityBody">
+                            <tr>
+                                <td>Isaac Ortega</td>
+                                <td>07:55 AM</td>
+                                <td>Laboratorio 2</td>
+                                <td><span class="badge badge-ok">Entrada QR</span></td>
+                            </tr>
+                            <tr>
+                                <td>Leiby Carrillo</td>
+                                <td>08:12 AM</td>
+                                <td>Laboratorio 2</td>
+                                <td><span class="badge badge-warn">Tardanza</span></td>
+                            </tr>
+                            <tr>
+                                <td>Neomar Campos</td>
+                                <td>07:50 AM</td>
+                                <td>Aula 104</td>
+                                <td><span class="badge badge-ok">Entrada QR</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
 </html>

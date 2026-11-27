@@ -1,55 +1,56 @@
-# Ingeniería inversa · <Sitio de referencia>
+# Ingeniería Inversa · Jibble (y referencia complementaria CyberSheet)
 
-> Historia H1.1. Estudia el sitio con las DevTools del navegador (F12) y documenta al menos
-> 10 hallazgos con capturas. Guarda las capturas en `docs/img/`.
->
-> Reglas: se recrea la experiencia, no la marca. No descargues sus archivos; no recrees
-> pantallas de inicio de sesión ni de pago.
+> Análisis realizado con Chrome DevTools sobre **Jibble** (`https://web.jibble.io/get-started`) como sitio de referencia principal para **Control de Asistencia con QR (AsistQR)**
 
-## 1. Estructura (pestaña Elements)
+## 1. Hallazgos con DevTools
 
-- ¿Qué etiquetas semánticas usa (`header`, `nav`, `main`, `article`…)? ¿Cuáles faltan?
-- ¿Cómo está organizado el layout (Flexbox, Grid)?
+### Estructura (Elements)
+1. **Layout de barra lateral fija + área de contenido:** Jibble separa la navegación principal en un `aside` izquierdo persistente y reserva el contenedor derecho para métricas, onboarding y tablas.
+   ![Estructura principal de Jibble](capturas/01-estructura-layout.png)
+2. **Jerarquía de tarjetas KPI + tabla operativa:** Las vistas principales agrupan resúmenes numéricos en la parte superior (grid de tarjetas) y el detalle de registros debajo, patrón que combinamos con la matriz compacta de CyberSheet.
+   ![Tarjetas KPI y tabla](capturas/02-tarjetas-tabla.png)
 
-## 2. Sistema de diseño (pestaña Elements → Computed)
+### Sistema de Diseño (Computed / Styles)
+3. **Paleta de alto contraste cálido:** Jibble utiliza naranja vibrante como color de acción principal sobre fondos blancos y grises claros. En **AsistQR** lo reemplazamos por pizarra oscuro (`#0f172a`) y verde esmeralda (`#0d9488`).
+   ![Paleta y estilos computados](capturas/03-sistema-diseno-colores.png)
+4. **Tipografía web externa:** El sitio original descarga múltiples pesos de fuentes externas (`woff2`), aumentando el tiempo de pintado inicial.
+   ![Tipografía en Computed](capturas/04-tipografia.png)
 
-| Elemento | Valor |
-| --- | --- |
-| Color principal | |
-| Color de fondo | |
-| Tipografía de títulos | |
-| Tipografía de texto | |
-| Tamaño base del texto | |
-| Espaciado típico | |
-| Radio de bordes | |
+### Red (Network)
+5. **Alto número de peticiones iniciales:** Al recargar sin caché (`Ctrl + Shift + R`), Jibble dispara decenas de peticiones entre bundles JS, analítica, chats de soporte y estilos.
+   ![Pestaña Network](capturas/05-red-peticiones.png)
+6. **Peso de transferencia elevado:** Los scripts de terceros y librerías de frontend superan varios MB en la carga inicial.
+   ![Peso de carga en Network](capturas/06-red-peso.png)
 
-## 3. Red (pestaña Network → Fetch/XHR)
+### Estado e Interacción (Application / Console)
+7. **Persistencia de sesión y preferencias en el navegador:** El sitio almacena tokens, datos en IndexedDB y configuración de interfaz en `localStorage` y cookies.
+   ![Almacenamiento en Application](capturas/07-estado-storage.png)
+8. **Actualización dinámica sin recargar la página:** El reloj de entrada/salida y los filtros de hoja de tiempos actualizan el DOM al instante mediante JavaScript.
+   ![Interacción y filtros](capturas/08-interaccion-filtros.png)
 
-- ¿Qué peticiones hace al cargar? ¿A qué URL?
-- ¿Qué formato tienen los datos (JSON)? Pega un ejemplo resumido.
-- ¿Qué pasa en la red cuando filtras o buscas?
+### Auditoría Lighthouse (Original)
+9. **Puntaje de Rendimiento crítico (30/100):** El exceso de JavaScript bloqueante, scripts de terceros y recursos pesados penalizan severamente el rendimiento de carga en Jibble.
+   ![Lighthouse Jibble Original](capturas/09-lighthouse-original.png)
+10. **Oportunidades de Accesibilidad (81/100) y SEO (45/100):** Se detectan advertencias en etiquetas accesibles, metadatos y estructura semántica en la auditoría automática.
+    ![Detalles de Accesibilidad](capturas/10-accesibilidad-original.png)
 
-## 4. Estado (pestaña Application)
+---
 
-- ¿Qué guarda en la URL (parámetros)?
-- ¿Qué guarda en cookies y localStorage?
+## 2. Tres problemas corregidos en `clon/` (AsistQR)
 
-## 5. Rendimiento y accesibilidad (pestaña Lighthouse)
+1. **Rendimiento y peso de carga (+70 puntos):** Se eliminaron frameworks pesados, scripts de terceros y fuentes externas. `clon/` usa HTML, CSS y JS puro con SVG en línea, logrando **100/100 en Rendimiento**.
+2. **Accesibilidad (+14 puntos) y SEO (+55 puntos):** Se añadieron etiquetas semánticas (`aside`, `nav`, `main`, `section`), atributos `aria-label` en botones y campos de búsqueda, `role="dialog"` en el modal QR, meta descripción y contraste superior a 4.5:1, subiendo a **95/100 en Accesibilidad** y **100/100 en SEO**.
+3. **Responsividad real a 375 px y 1280 px:** Se implementó menú colapsable para móvil y contenedores `.table-wrap` con desplazamiento horizontal controlado para que ninguna tabla rompa el ancho de pantalla en teléfonos.
 
-| Métrica | Sitio original | Mi versión |
-| --- | --- | --- |
-| Rendimiento | | |
-| Accesibilidad | | |
-| Buenas prácticas | | |
+---
 
-## 6. Hallazgos
+## 3. Comparativa Lighthouse (Antes vs. Después)
 
-| # | Hallazgo | Captura |
-| --- | --- | --- |
-| 1 | | |
+| Métrica | Jibble (Antes) | AsistQR `clon/` (Después) | Mejora |
+| --- | :---: | :---: | :---: |
+| Rendimiento | 30 | 100 | +70 |
+| Accesibilidad | 81 | 95 | +14 |
+| Prácticas recomendadas | 92 | 100 | +8 |
+| SEO | 45 | 100 | +55 |
 
-## 7. Tres mejoras que hice en mi versión (H1.3)
-
-1.
-2.
-3.
+![Lighthouse AsistQR Después](capturas/11-lighthouse-clon.png) 

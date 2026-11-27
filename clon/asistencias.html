@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Matriz y hoja de control de asistencias con filtros rápidos en AsistQR.">
+    <title>AsistQR · Hoja de Asistencias</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <aside class="sidebar" id="sidebar">
+        <a href="index.html" class="brand">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#14b8a6" stroke-width="2"
+                aria-hidden="true">
+                <rect x="3" y="3" width="7" height="7"></rect>
+                <rect x="14" y="3" width="7" height="7"></rect>
+                <rect x="3" y="14" width="7" height="7"></rect>
+                <path d="M14 14h3v3h-3zM18 18h3v3h-3z"></path>
+            </svg>
+            <span>AsistQR</span>
+        </a>
+        <nav aria-label="Navegación principal">
+            <ul class="nav-list">
+                <li><a href="index.html" class="nav-link">Panel de Marcaje</a></li>
+                <li><a href="asistencias.html" class="nav-link active">Hoja de Asistencias</a></li>
+                <li><a href="equipo.html" class="nav-link">Equipo y Códigos QR</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <div class="main">
+        <header class="topbar">
+            <button class="menu-btn" id="menuBtn" aria-label="Abrir menú de navegación">Menú</button>
+            <h1>Hoja de Asistencias</h1>
+            <span class="card-label">Semana 48 · Nov 2026</span>
+        </header>
+
+        <main class="content">
+            <section class="card toolbar" aria-label="Filtros de asistencia">
+                <input type="search" id="searchInput" class="input" placeholder="Buscar por nombre o cédula..."
+                    aria-label="Buscar participante">
+                <select id="statusFilter" class="select" aria-label="Filtrar por estado">
+                    <option value="todos">Todos los estados</option>
+                    <option value="presente">Presente</option>
+                    <option value="tardanza">Tardanza</option>
+                    <option value="ausente">Ausente</option>
+                </select>
+            </section>
+
+            <section class="card" aria-label="Matriz de asistencias">
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Fecha</th>
+                                <th>Entrada</th>
+                                <th>Salida</th>
+                                <th>Horas</th>
+                                <th>Estado</th>
+                            </tr>
+                        </thead>
+                        <tbody id="sheetBody">
+                            <tr data-status="presente">
+                                <td>Vicente Castellón</td>
+                                <td>27/11/2026</td>
+                                <td>07:45 AM</td>
+                                <td>12:00 PM</td>
+                                <td>4h 15m</td>
+                                <td><span class="badge badge-ok">Presente</span></td>
+                            </tr>
+                            <tr data-status="presente">
+                                <td>Isaac Ortega</td>
+                                <td>27/11/2026</td>
+                                <td>07:55 AM</td>
+                                <td>12:05 PM</td>
+                                <td>4h 10m</td>
+                                <td><span class="badge badge-ok">Presente</span></td>
+                            </tr>
+                            <tr data-status="tardanza">
+                                <td>Leiby Carrillo</td>
+                                <td>27/11/2026</td>
+                                <td>08:12 AM</td>
+                                <td>12:00 PM</td>
+                                <td>3h 48m</td>
+                                <td><span class="badge badge-warn">Tardanza</span></td>
+                            </tr>
+                            <tr data-status="ausente">
+                                <td>Carlos Méndez</td>
+                                <td>27/11/2026</td>
+                                <td>--:--</td>
+                                <td>--:--</td>
+                                <td>0h 00m</td>
+                                <td><span class="badge badge-err">Ausente</span></td>
+                            </tr>
+                            <tr data-status="presente">
+                                <td>Neomar Campos</td>
+                                <td>27/11/2026</td>
+                                <td>07:50 AM</td>
+                                <td>12:00 PM</td>
+                                <td>4h 10m</td>
+                                <td><span class="badge badge-ok">Presente</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
